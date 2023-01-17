@@ -1,53 +1,58 @@
-import React, {useState} from "react"; //1. importar el hook useState
+import React, {useState} from "react";
 
-//use state = usar estado;
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
 
-	//    valor inicial, actualiza el valor inicial
-//    const [nombre,setNombre]= useState("Manzana")
-//    const [seguidores,setSeguidores]= useState(0)
-   const [color1,setColor1]= useState("");
+    const [red, setRed] = useState("");
+    const [yellow, setYellow] = useState("");
+    const [green, setGreen] = useState("");
 
-//    function cambiarNombre() {
-// 	setNombre("Pera")
-//    }
+    function turnRed() {
+        if (red === "redOn") {
+            setRed("")
+        } else {
+            setRed("redOn");
+            setYellow("");
+            setGreen("");
+        }
+    }
 
-//    function follow() {
-// 	//             0  + 1 = 1
-// 	setSeguidores(seguidores+1)
+    function turnYellow() {
+        if (yellow === "yellowOn") {
+            setYellow("")
+        } else {
+            setYellow("yellowOn")
+            setRed("")
+            setGreen("")
+        }
+    }
 
-//    }
+    function turnGreen() {
+        if (green === "greenOn") {
+            setGreen("")
+        } else {
+            setGreen("greenOn")
+            setRed("")
+            setYellow("")
+        }
+    }
 
-//    useState()//===> [variable,function]
-
-	//funcionalidades del componente
-    //  let nombre = "Rosinni";
-	//  variables, constates, funciones
-	function encenderRojo() {
-
-		if(color1 === "btn-danger"){
-			setColor1("")
-		}else{
-		setColor1("btn-danger")
-	}
-}
-
-
-
-	return (
-		<div className="text-center d-flex flex-column">
-			<button className={"btn "+color1} onClick={encenderRojo}>Rojo</button>
-			<button>Amarillo</button>
-			<button>Verde</button>
-		</div>
-	);
+    return (
+        <div className="text-center d-flex flex-column trafficlight rounded-0">
+            <button className={
+                    "red " + red
+                }
+                onClick={turnRed}></button>
+            <button className={
+                    "yellow " + yellow
+                }
+                onClick={turnYellow}></button>
+            <button className={
+                    "green " + green
+                }
+                onClick={turnGreen}></button>
+        </div>
+    );
 
 };
 
 export default Home;
-
